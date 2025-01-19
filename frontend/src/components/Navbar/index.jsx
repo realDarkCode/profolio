@@ -12,15 +12,11 @@ function index() {
   const handleToggleNav = () => setIsNavOpen(!isNavOpen);
 
   return (
-    <nav className="w-full flex justify-between items-center px-8 py-4  md:px-20 md:py-8  bg-[rgba(255,255,255,0.25)]  backdrop-filter backdrop-blur-sm border border-[rgba(255,255,255,0.18)] fixed top-0 z-30 shadow-md">
+    <nav className="w-full flex justify-between items-center px-8 py-4  md:px-20 md:py-6  bg-[rgba(255,255,255,0.25)]  backdrop-filter backdrop-blur-sm border border-[rgba(255,255,255,0.18)] fixed top-0 z-30 shadow-md">
       <div className="flex justify-start items-center ">
-        <img
-          src={images.logo}
-          alt="Logo"
-          className="w-full  2xl:w-44 2xl:h-20"
-        />
+        <img src={images.logo} alt="Logo" className="w-24 lg:w-32  " />
       </div>
-      <ul className="flex-1 hidden md:flex justify-end items-center list-none gap-4">
+      <ul className="flex-1 hidden lg:flex justify-end items-center list-none gap-4">
         {navItems.map((item) => (
           <li
             key={`nav-item-${item}`}
@@ -36,7 +32,7 @@ function index() {
           </li>
         ))}
       </ul>
-      <div className="size-9 rounded-full relative flex justify-center items-center cursor-pointer bg-secondary md:hidden">
+      <div className="size-9 rounded-full relative flex justify-center items-center cursor-pointer bg-secondary lg:hidden">
         <HiMenuAlt4
           className="text-white size-2/3"
           onClick={() => setIsNavOpen(true)}

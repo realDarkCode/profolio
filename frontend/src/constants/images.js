@@ -7,10 +7,12 @@ import flutter from '../assets/flutter.png';
 import git from '../assets/git.png';
 import graphql from '../assets/graphql.png';
 import html from '../assets/html.png';
+import illustrator from '../assets/illustrator.png';
 import javascript from '../assets/javascript.png';
 import mobile from '../assets/mobile.png';
 import mu5 from '../assets/mu5.png';
 import node from '../assets/node.png';
+import photoshop from '../assets/photoshop.png';
 import python from '../assets/python.png';
 import react from '../assets/react.png';
 import redux from '../assets/redux.png';
@@ -42,6 +44,8 @@ export default {
     cpp,
     css,
     figma,
+    photoshop,
+    illustrator,
     flutter,
     git,
     graphql,

@@ -17,7 +17,20 @@ export default {
       },
       fontFamily: {
         base: ["DM Sans", "sans-serif"]
-      }
+      },
+      boxShadow: {
+        floatCard: "0 0 20px rgba(0, 0, 0, 0.1)",
+      },
+      animation: {
+        "spin-slow": "spin 20s linear infinite",
+      },
+      keyframes: {
+        spin: {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" }
+        },
+
+      },
     }
   },
   plugins: []
