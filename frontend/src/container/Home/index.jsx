@@ -1,7 +1,6 @@
 import { images } from "@/constants";
 import { motion } from "framer-motion";
 import React from "react";
-import "./style.scss";
 
 const scaleVariants = {
   whileInView: {
