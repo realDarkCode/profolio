@@ -1,0 +1,8 @@
+.active-link {
+  a {
+    @apply text-secondary;
+  }
+  div {
+    @apply bg-secondary w-full h-full;
+  }
+}
