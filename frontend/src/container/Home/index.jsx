@@ -1,7 +1,7 @@
 import { images } from "@/constants";
+import ComponentWrap from "@/Wrapper/ComponentWrap";
 import { motion } from "framer-motion";
 import React from "react";
-
 const scaleVariants = {
   whileInView: {
     scale: [0, 1],
@@ -14,12 +14,9 @@ const scaleVariants = {
 };
 
 const flutterImages = [images.photoshop, images.figma, images.illustrator];
-function index() {
+const Home = () => {
   return (
-    <div
-      id="home"
-      className="flex justify-center items-center relative bg-[url('/bgIMG.png')] bg-cover bg-center bg-repeat flex-1 w-full h-full flex-col pt-24 lg:pt-28 px-4 pb-8 lg:px-2 lg:pb-0 lg:flex-row"
-    >
+    <div className="flex justify-center items-center relative bg-[url('/bgIMG.png')] bg-cover bg-center bg-repeat flex-1 w-full h-full flex-col pt-24 lg:pt-28 px-4 pb-8 lg:px-2 lg:pb-0 lg:flex-row">
       <motion.div
         whileInView={{ x: [-100, 0], opacity: [0, 1] }}
         transition={{ duration: 0.5 }}
@@ -104,6 +101,6 @@ function index() {
       </motion.div>
     </div>
   );
-}
+};
 
-export default index;
+export default ComponentWrap(Home, "home");

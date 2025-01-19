@@ -3,6 +3,8 @@ import { images } from "@/constants";
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import "./style.scss";
+
+import componentWrap from "@/wrapper/componentWrap";
 const initialState = [
   {
     title: "Graphic Designer",
@@ -70,4 +72,4 @@ function index() {
   );
 }
 
-export default index;
+export default componentWrap(index, "about");
