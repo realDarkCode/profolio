@@ -3,11 +3,13 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  scroll-behavior: smooth;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 .app {
-  background-color: theme("colors.primary");
+  background-color: theme("colors.secondaryLight");
   font-family: theme("fontFamily.base");
 }
 
@@ -16,7 +18,7 @@
 }
 
 .app__primarybg {
-  background-color: theme("colors.primary");
+  background-color: theme("colors.secondaryLight");
 }
 
 .copyright {

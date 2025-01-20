@@ -4,7 +4,8 @@ import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import "./style.scss";
 
-import componentWrap from "@/wrapper/componentWrap";
+import AnimateWrap from "@/wrapper/AnimateWrap";
+import ComponentWrap from "@/wrapper/ComponentWrap";
 const initialState = [
   {
     title: "Graphic Designer",
@@ -72,4 +73,4 @@ function index() {
   );
 }
 
-export default componentWrap(index, "about");
+export default ComponentWrap(AnimateWrap(index), "about", "bg-white");

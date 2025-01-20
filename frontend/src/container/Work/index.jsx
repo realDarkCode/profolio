@@ -5,7 +5,8 @@ import { client, imageUrl } from "@/client";
 import { motion } from "framer-motion";
 import { AiFillEye, AiFillGithub } from "react-icons/ai";
 
-import componentWrap from "@/Wrapper/componentWrap";
+import AnimateWrap from "@/Wrapper/AnimateWrap";
+import ComponentWrap from "@/Wrapper/componentWrap";
 const initialAnimate = {
   y: 0,
   opacity: 1,
@@ -76,9 +77,6 @@ function Work() {
         My <span> Creative</span> Work Section
       </h2>
       <div className="flex flex-row  justify-center md:justify-start items-center flex-wrap gap-4 mt-16 mx-0 mb-8">
-        {categories.length === 0 && (
-          <div className="p-text">Work will be added soon</div>
-        )}
         {categories.map((category, index) => (
           <div
             key={`Work ` + index}
@@ -97,6 +95,9 @@ function Work() {
         transition={{ duration: 0.5, delayChildren: 0.5 }}
         className="flex justify-center items-center flex-wrap gap-4  lg:gap-6"
       >
+        {!filteredWorkList.length && (
+          <h2 className="head-text text-lg text-gray">No Work Found</h2>
+        )}
         {filteredWorkList.map((work, index) => (
           <div
             className="flex justify-center items-center flex-col w-full md:w-64 lg:w-80 xl:w-96 rounded-md lg:rounded-xl p-4 bg-white text-black  cursor-pointer transition-all duration-300 ease-in-out hover:shadow-floatCard group"
@@ -157,4 +158,8 @@ function Work() {
   );
 }
 
-export default componentWrap(Work, "work");
+export default ComponentWrap(
+  AnimateWrap(Work, "flex-col"),
+  "work",
+  "bg-secondaryLight"
+);

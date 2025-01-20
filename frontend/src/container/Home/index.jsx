@@ -14,6 +14,7 @@ const scaleVariants = {
 };
 
 const flutterImages = [images.photoshop, images.figma, images.illustrator];
+
 const Home = () => {
   return (
     <div className="flex justify-center items-center relative bg-[url('/bgIMG.png')] bg-cover bg-center bg-repeat flex-1 w-full h-full flex-col pt-24 lg:pt-28 px-4 pb-8 lg:px-2 lg:pb-0 lg:flex-row">
