@@ -19,7 +19,7 @@ export default {
         base: ["DM Sans", "sans-serif"]
       },
       boxShadow: {
-        floatCard: "0 0 20px rgba(0, 0, 0, 0.1)",
+        floatCard: "0 0 20px rgba(0, 0, 0, 0.2)",
       },
       animation: {
         "spin-slow": "spin 20s linear infinite",

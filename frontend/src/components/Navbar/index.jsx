@@ -8,8 +8,15 @@ import { HiMenuAlt4, HiX } from "react-icons/hi";
 const navItems = ["home", "about", "work", "skills", "contact"];
 function index() {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [active, setActive] = useState(navItems[0]);
 
-  const handleToggleNav = () => setIsNavOpen(!isNavOpen);
+  const handleNavClick = (item) => {
+    setActive(item);
+
+    if (isNavOpen) {
+      setIsNavOpen(false);
+    }
+  };
 
   return (
     <nav className="w-full flex justify-between items-center px-8 py-4  md:px-20 md:py-6  bg-[rgba(255,255,255,0.25)]  backdrop-filter backdrop-blur-sm border border-[rgba(255,255,255,0.18)] fixed top-0 z-30 shadow-md">
@@ -23,12 +30,19 @@ function index() {
             className="text-md cursor-pointer flex-col  group"
           >
             <a
-              className="text-gray no-underline flex-col uppercase font-medium  group-hover:text-secondary transition-colors ease-in-out duration-300"
+              className={`text-gray no-underline flex-col uppercase font-medium  group-hover:text-secondary transition-colors ease-in-out duration-300  ${
+                active === item ? "text-secondary" : ""
+              }`}
               href={`#${item}`}
+              onClick={() => handleNavClick(item)}
             >
               {item}
             </a>
-            <div className="size-1 mt-1 bg-transparent rounded-full group-hover:bg-secondary group-hover:w-full transition-all ease-in-out duration-300" />
+            <div
+              className={`size-1 mt-1 bg-transparent rounded-full group-hover:bg-secondary group-hover:w-full transition-all ease-in-out duration-300  ${
+                active === item ? "!bg-secondary w-full" : ""
+              }`}
+            />
           </li>
         ))}
       </ul>

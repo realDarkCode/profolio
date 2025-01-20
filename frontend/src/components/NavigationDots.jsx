@@ -2,7 +2,7 @@ import React from "react";
 
 export default function NavigationDots({ active }) {
   return (
-    <div className="flex flex-col items-center justify-center p-4 gap-2">
+    <div className="md:flex flex-col items-center justify-center p-4 gap-2 hidden">
       {["home", "about", "work", "skills", "testimonials", "contact"].map(
         (item, index) => (
           <a
