@@ -49,7 +49,7 @@ html {
 }
 
 .section-subheading {
-  @apply text-center text-lg font-normal lg:text-xl xl:text-2xl mb-4 lg:mb-8;
+  @apply text-center text-lg underline underline-offset-8 font-normal lg:text-xl xl:text-2xl mb-4 lg:mb-8 flex gap-4 items-center justify-center;
 }
 .p-text {
   @apply text-sm leading-6  text-justify lg:text-left lg:text-base  xl:text-lg text-gray;

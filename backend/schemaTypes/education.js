@@ -1,6 +1,6 @@
 export default {
-    name: 'experiences',
-    title: 'Experiences',
+    name: 'education',
+    title: 'Education',
     type: 'document',
     fields: [
         {
@@ -9,13 +9,13 @@ export default {
             type: 'string'
         },
         {
-            name: 'role',
-            title: 'Role',
+            name: 'degree',
+            title: 'Degree',
             type: 'string'
         },
         {
-            name: 'company',
-            title: 'Company',
+            name: 'institution',
+            title: 'Institution',
             type: 'string'
         },
         {
@@ -23,6 +23,5 @@ export default {
             title: 'Description',
             type: 'string'
         }
-
     ]
 }

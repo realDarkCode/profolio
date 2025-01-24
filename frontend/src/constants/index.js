@@ -1,3 +1,5 @@
 import images from './images';
 
-export { images };
+const navItems = ["home", "about", "work", "experience", "courses", "contact"];
+
+export { images, navItems };

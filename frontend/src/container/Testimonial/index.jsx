@@ -14,8 +14,6 @@ function index() {
     const testimonialsQuery = "*[_type == 'testimonials']";
     client.fetch(testimonialsQuery).then((res) => {
       if (res.length === 0) return;
-
-      console.log(res);
       const testimonials = res.map((item) => ({
         name: item.name?.trim(),
         company: item.company?.trim(),

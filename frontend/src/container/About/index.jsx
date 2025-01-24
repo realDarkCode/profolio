@@ -72,7 +72,7 @@ function index() {
                         r="16"
                         fill="none"
                         className="stroke-current text-green-200 "
-                        stroke-width="2"
+                        strokeWidth="2"
                       ></circle>
 
                       <circle
@@ -81,10 +81,10 @@ function index() {
                         r="16"
                         fill="none"
                         className="stroke-current text-green-600 "
-                        stroke-width="2"
-                        stroke-dasharray="100"
-                        stroke-dashoffset={100 - skill.progress}
-                        stroke-linecap="round"
+                        strokeWidth="2"
+                        strokeDasharray="100"
+                        strokeDashoffset={100 - skill.progress}
+                        strokeLinecap="round"
                       ></circle>
                     </svg>
                   </div>

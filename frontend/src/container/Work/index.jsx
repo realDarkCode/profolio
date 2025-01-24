@@ -7,8 +7,9 @@ import { AiFillEye, AiFillGithub } from "react-icons/ai";
 
 import AnimateWrap from "@/Wrapper/AnimateWrap";
 import ComponentWrap from "@/Wrapper/componentWrap";
+
 const initialAnimate = {
-  y: 0,
+  scale: 1,
   opacity: 1,
 };
 
@@ -56,7 +57,7 @@ function Work() {
 
   const handleWorkFilter = (category) => {
     setActiveFilter(category);
-    setAnimateCard({ y: 100, opacity: 0 });
+    setAnimateCard({ scale: 0, opacity: 0 });
 
     setTimeout(() => {
       if (category === "all") {
@@ -67,7 +68,7 @@ function Work() {
         );
         setFilteredWorkList(filtered);
       }
-      setAnimateCard({ y: 0, opacity: 1 });
+      setAnimateCard({ ...initialAnimate });
     }, 500);
   };
   return (
@@ -92,15 +93,19 @@ function Work() {
 
       <motion.div
         animate={animateCard}
-        transition={{ duration: 0.5, delayChildren: 0.5 }}
-        className="flex justify-center items-center flex-wrap gap-4  lg:gap-6"
+        transition={{ duration: 0.3, delayChildren: 0.3 }}
+        className="flex justify-center items-center flex-wrap gap-4  lg:gap-6 origin-top"
       >
         {!filteredWorkList.length && (
           <h2 className="head-text text-lg text-gray">No Work Found</h2>
         )}
         {filteredWorkList.map((work, index) => (
-          <div
-            className="flex justify-center items-center flex-col w-full md:w-64 lg:w-80 xl:w-96 rounded-md lg:rounded-xl p-4 bg-white text-black  cursor-pointer transition-all duration-300 ease-in-out hover:shadow-floatCard group"
+          <motion.div
+            initial={{ scale: 0.75, opacity: 0, y: 50 }}
+            whileInView={{ scale: 1, opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            viewport={{ amount: 0.3, once: true }}
+            className="flex justify-center items-center flex-col w-full md:w-64 lg:w-80 xl:w-96 rounded-md lg:rounded-xl p-4 bg-white text-black  cursor-pointer transition-all duration-300 ease-in-out hover:shadow-floatCard group origin-center"
             key={"work-" + index}
           >
             <div className="relative w-full flex justify-center items-center">
@@ -110,26 +115,16 @@ function Work() {
                 className="w-full h-full object-cover rounded-lg"
               />
 
-              <div className="absolute top-0 bottom-0 left-0 right-0 w-full h-full bg-black/50 rounded-lg  transition-all duration-300 ease  flex justify-center items-center gap-4 lg:gap-8 opacity-0 group-hover:opacity-100">
+              <div className="absolute top-0 bottom-0 left-0 right-0 w-full h-full bg-black/50 rounded-lg  transition-all duration-300 ease  flex justify-center items-center gap-4 lg:gap-8 opacity-100 lg:opacity-0 group-hover:opacity-100">
                 <a href={work.projectLink} target="_blank" rel="noreferrer">
-                  <motion.div
-                    whileInView={{ scale: [0, 1] }}
-                    whileHover={{ scale: [1, 0.9] }}
-                    transition={{ duration: 0.25 }}
-                    className="size-12 rounded-full bg-black/50 text-white font-bold cursor-pointer transition-all duration-300 ease flex justify-center items-center"
-                  >
+                  <div className="size-12 rounded-full bg-black/50 text-white font-bold cursor-pointer transition-all duration-300 ease flex justify-center items-center">
                     <AiFillEye className="w-1/2 h-1/2 text-white" />
-                  </motion.div>
+                  </div>
                 </a>
                 <a href={work.codeLink} target="_blank" rel="noreferrer">
-                  <motion.div
-                    whileInView={{ scale: [0, 1] }}
-                    whileHover={{ scale: [1, 0.9] }}
-                    transition={{ duration: 0.25 }}
-                    className="size-12 rounded-full bg-black/50 text-white font-bold cursor-pointer transition-all duration-300 ease flex justify-center items-center"
-                  >
+                  <div className="size-12 rounded-full bg-black/50 text-white font-bold cursor-pointer transition-all duration-300 ease flex justify-center items-center">
                     <AiFillGithub className="w-1/2 h-1/2 text-white" />
-                  </motion.div>
+                  </div>
                 </a>
               </div>
             </div>
@@ -151,7 +146,7 @@ function Work() {
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </motion.div>
     </>

@@ -1,11 +1,11 @@
-import { images } from "../../constants/";
+import { images, navItems } from "@/constants";
 import "./style.scss";
 
 import { motion, useScroll } from "framer-motion";
+
 import { useEffect, useState } from "react";
 import { HiMenuAlt4, HiX } from "react-icons/hi";
 
-const navItems = ["home", "about", "work", "skills", "contact"];
 function index() {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [active, setActive] = useState(navItems[0]);
@@ -73,9 +73,11 @@ function index() {
         />
         {isNavOpen && (
           <motion.div
-            className="fixed top-0 bottom-0 right-0 z-10 p-8 w-4/5 h-screen flex items-end justify-end flex-col bg-[url(/bgWhite.png)] bg-cover bg-repeat bg-white shadow-lg"
-            whileInView={{ x: [300, 0] }}
-            transition={{ duration: 0.85, ease: "easeOut" }}
+            className="fixed top-0 bottom-0 right-0 z-10 p-8 w-full sm:w-4/5 h-screen flex items-end justify-end flex-col bg-[url(/bgWhite.png)] bg-cover bg-repeat bg-white shadow-lg"
+            initial={{ x: 300 }}
+            whileInView={{ x: 0 }}
+            exit={{ x: 300 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
           >
             <HiX
               onClick={() => setIsNavOpen(false)}
@@ -85,7 +87,7 @@ function index() {
               {navItems.map((item) => (
                 <li
                   key={`nav-item-${item}`}
-                  onClick={() => setIsNavOpen(false)}
+                  onClick={() => handleNavClick(item)}
                   className="group flex items-center gap-2 "
                 >
                   <div className="w-1 h-0 bg-transparent rounded-full group-hover:bg-secondary group-hover:h-full transition-all ease-in-out duration-300" />
