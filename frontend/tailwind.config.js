@@ -22,16 +22,18 @@ export default {
       boxShadow: {
         floatCard: "0 0 20px rgba(0, 0, 0, 0.2)",
       },
-      animation: {
-        "spin-slow": "spin 20s linear infinite",
-      },
       keyframes: {
-        spin: {
+        wave: {
           "0%": { transform: "rotate(0deg)" },
-          "100%": { transform: "rotate(360deg)" }
+          "50%": { transform: "rotate(20deg)" },
+          "100%": { transform: "rotate(0deg)" },
         },
-
       },
+      animation: {
+        "spin-slow": "spin 10s linear infinite",
+        wave: "wave 3s linear infinite forwards",
+      },
+
     }
   },
   plugins: []

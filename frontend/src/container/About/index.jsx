@@ -1,76 +1,135 @@
 import { client, imageUrl } from "@/client";
-import { images } from "@/constants";
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import "./style.scss";
 
 import AnimateWrap from "@/wrapper/AnimateWrap";
 import ComponentWrap from "@/wrapper/ComponentWrap";
-const initialState = [
-  {
-    title: "Graphic Designer",
-    description: "I'm a professional graphic designer",
-    imgUrl: images.about01,
-  },
-  {
-    title: "Web Designer",
-    description: "I'm a professional web designer",
-    imgUrl: images.about02,
-  },
-  {
-    title: "UI/UX Designer",
-    description: "I'm a professional UI/UX designer",
-    imgUrl: images.about03,
-  },
-  {
-    title: "Photographer",
-    description: "I'm a professional photographer",
-    imgUrl: images.about04,
-  },
-];
+
 function index() {
-  const [aboutList, setAboutList] = useState([...initialState]);
+  const [skills, setSkills] = useState([]);
+
   useEffect(() => {
-    const query = "*[_type == 'abouts']";
-    client.fetch(query).then((res) => {
+    const skillsQuery = "*[_type == 'skills']";
+
+    client.fetch(skillsQuery).then((res) => {
       if (res.length === 0) return;
-      const data = res.map((item) => ({
-        title: item.title,
-        description: item.description,
-        imgUrl: imageUrl(item.imgUrl).url(),
+      const skills = res.map((item) => ({
+        name: item.name?.trim(),
+        bgColor: item.bgColor?.trim(),
+        icon: imageUrl(item.icon)?.url(),
+        progress: item.progress || 100,
       }));
 
-      setAboutList(data);
+      setSkills(skills);
     });
   }, []);
   return (
-    <div className="flex-1 w-full flex-col mt-8">
-      <h2 className="text-2xl lg:text-4xl font-bold text-center text-black uppercase">
-        {" "}
-        I know that <span className="text-secondary">Good Design</span> <br />
-        means <span className="text-secondary">Good business</span>
+    <>
+      <h2 className="head-text">
+        Let me <span>introduce</span> myself
       </h2>
-      <div className="flex justify-center items-start flex-wrap mt-8 gap-4 md:gap-8 lg:gap-12">
-        {aboutList.map((about, index) => (
-          <motion.div
-            whileInView={{ opacity: [1] }}
-            whileHover={{ scale: 1.1 }}
-            transition={{ duration: 0.5 }}
-            key={`about-${index}-${about.title}`}
-            className="flex justify-start items-start flex-col w-44 lg:w-60 xl:w-64 2xl:w-80 cursor-pointer"
-          >
-            <img
-              src={about.imgUrl}
-              alt={about.title}
-              className="w-full rounded-2xl object-cover"
-            />
-            <h2 className="bold-text mt-5 ">{about.title}</h2>
-            <p className="p-text mt-2">{about.description}</p>
+
+      <div className="w-full px-2 md:px-4 lg:px-8 flex flex-col-reverse lg:flex-row mt-12 gap-4  justify-center items-center lg:divide-x-2 divide-secondaryDark divide-dashed">
+        <div className="w-full">
+          <h2 className="col-span-full section-subheading text-left ">
+            Technologies I use
+          </h2>
+          <motion.div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5  lg:grid-cols-4 gap-4 lg:gap-8">
+            {skills.map((skill, index) => (
+              <motion.div
+                key={skill.name + index}
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3 }}
+                viewport={{ once: true, amount: 0.4 }}
+                className="transition-brand flex flex-col justify-center items-center gap-2 cursor-pointer  group"
+              >
+                <div className="relative">
+                  <div
+                    style={{ backgroundColor: skill.bgColor }}
+                    className="flex justify-center items-center shrink-0 size-16 xl:size-20 rounded-full bg-secondaryLight hover:shadow-floatCard relative z-10 group-hover:scale-[0.85] transition-brand"
+                  >
+                    <img
+                      src={skill.icon}
+                      alt={skill.name}
+                      className="w-1/2 h-1/2  group-hover:opacity-0"
+                    />
+                    <span className="absolute flex  opacity-0 group-hover:opacity-100  justify-center items-center w-full h-full rounded-full ">
+                      {skill.progress + "%"}
+                    </span>
+                  </div>
+
+                  <div className="absolute inset-0  transition-brand rounded-full scale-110  ">
+                    <svg
+                      className="size-full -rotate-90"
+                      viewBox="0 0 36 36"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle
+                        cx="18"
+                        cy="18"
+                        r="16"
+                        fill="none"
+                        className="stroke-current text-green-200 "
+                        stroke-width="2"
+                      ></circle>
+
+                      <circle
+                        cx="18"
+                        cy="18"
+                        r="16"
+                        fill="none"
+                        className="stroke-current text-green-600 "
+                        stroke-width="2"
+                        stroke-dasharray="100"
+                        stroke-dashoffset={100 - skill.progress}
+                        stroke-linecap="round"
+                      ></circle>
+                    </svg>
+                  </div>
+                </div>
+                <p className="p-text font-medium selection:bg-none">
+                  {skill.name}
+                </p>
+              </motion.div>
+            ))}
           </motion.div>
-        ))}
+        </div>
+        <motion.div
+          initial={{ x: 100, opacity: 0 }}
+          whileInView={{
+            x: 0,
+            opacity: 1,
+          }}
+          transition={{ duration: 0.3 }}
+          viewport={{ amount: 0.4, once: true }}
+          className="w-full px-4"
+        >
+          <h2 className="section-subheading "> About Me </h2>
+          <p className="p-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem
+            similique at odio quibusdam alias, velit dolore fuga ex deleniti!
+            Possimus, ullam. Ipsam eos hic corrupti eum illo recusandae minus
+            doloremque! Lorem ipsum dolor sit, amet consectetur adipisicing
+            elit. Incidunt, delectus quia! Veritatis molestiae distinctio, ipsa
+            fugit provident esse dicta ipsam dolor magni impedit laudantium
+            quam, dignissimos quaerat. Minus, tempora vitae.
+          </p>
+          <p className="p-text mt-4">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt,
+            delectus quia! Veritatis molestiae distinctio, ipsa fugit provident
+            esse dicta ipsam dolor magni impedit laudantium quam, dignissimos
+            quaerat. Minus, tempora vitae.
+          </p>
+        </motion.div>
       </div>
-    </div>
+    </>
   );
 }
 
-export default ComponentWrap(AnimateWrap(index), "about", "bg-white");
+export default ComponentWrap(
+  AnimateWrap(index, "flex-col"),
+  "about",
+  "bg-white"
+);

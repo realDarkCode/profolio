@@ -1,7 +1,10 @@
 import { images } from "@/constants";
 import ComponentWrap from "@/Wrapper/ComponentWrap";
 import { motion } from "framer-motion";
-import React from "react";
+
+import Typewrite from "@/components/Animations/TypeWrite";
+
+const flutterImages = [images.photoshop, images.figma, images.illustrator];
 const scaleVariants = {
   whileInView: {
     scale: [0, 1],
@@ -12,20 +15,25 @@ const scaleVariants = {
     },
   },
 };
-
-const flutterImages = [images.photoshop, images.figma, images.illustrator];
-
+const typewriteTexts = [
+  "Graphic Designer",
+  "Lecturer",
+  "Web Developer",
+  "Cyber Security Expert",
+];
 const Home = () => {
   return (
     <div className="flex justify-center items-center relative bg-[url('/bgIMG.png')] bg-cover bg-center bg-repeat flex-1 w-full h-full flex-col pt-24 lg:pt-28 px-4 pb-8 lg:px-2 lg:pb-0 lg:flex-row">
       <motion.div
-        whileInView={{ x: [-100, 0], opacity: [0, 1] }}
-        transition={{ duration: 0.5 }}
-        className="flex-[0.65] flex justify-start items-start flex-col h-full w-full selection:bg-none"
+        animate={{ x: ["-100%", 0], opacity: [0, 1], scale: [0.5, 1] }}
+        transition={{ duration: 1 }}
+        className="flex-[0.65] flex justify-start items-start flex-col h-full w-full selection:bg-none "
       >
         <div className="w-full flex justify-start items-start lg:justify-end lg:items-end flex-col">
           <motion.div className="py-4 px-8 border-white border-r-[15] flex-row w-auto shadow-floatCard  flex justify-center items-center">
-            <span className="text-3xl ">👋</span>
+            <span className="text-3xl origin-bottom inline-block animate-wave">
+              👋
+            </span>
             <div className="ml-5">
               <p className="text-sm lg:text-base text-left text-gray  leading-6">
                 Hello, I'm{" "}
@@ -35,29 +43,26 @@ const Home = () => {
               </h1>
             </div>
           </motion.div>
-          <div className="py-4 px-8 mt-8 border-white border-r-[15] flex-col w-auto shadow-floatCard  flex justify-center items-center">
+          <div className="py-4 px-8 mt-8 border-white border-r-[15] flex-col w-auto shadow-floatCard  flex justify-center items-start min-w-[300px]">
             <p className="text-sm lg:text-base text-right uppercase lg:text-left text-secondary font-bold  leading-6">
-              Graphic Designer
-            </p>
-            <p className="text-sm lg:text-base text-right uppercase lg:text-left text-secondary font-bold  leading-6">
-              Web Designer
+              I'm a <Typewrite textList={typewriteTexts} />
             </p>
           </div>
         </div>
       </motion.div>
 
       <motion.div
-        whileInView={{ opacity: [0, 1] }}
-        transition={{ duration: 0.5, delayChildren: 0.5 }}
-        className="flex-1 h-100 flex justify-end items-end relative mt-8 mx-0 sm:mt-0 sm:mx-4 "
+        animate={{ scale: [0.5, 1], opacity: [0, 1] }}
+        transition={{ duration: 0.5 }}
+        className="flex-1 h-100 flex justify-end items-end relative mt-8 mx-0 sm:mt-0 sm:mx-4 hover:scale-105"
       >
         <img
           src={images.profile}
           alt="profileImg"
           className="w-full object-contain z-10"
         />
-        <motion.img
-          whileInView={{ scale: [0, 1] }}
+        <img
+          animate={{ scale: [0, 1] }}
           transition={{ duration: 1, ease: "easeInOut" }}
           src={images.circle}
           alt="profile_bg_circle"
@@ -67,8 +72,8 @@ const Home = () => {
 
       <motion.div
         variants={scaleVariants}
-        whileInView={scaleVariants.whileInView}
-        className="lg:flex-[0.75] flex-wrap lg:flex-nowrap w-full flex lg:flex-col justify-center lg:justify-evenly items-start h-full ml-4 "
+        animate={scaleVariants.whileInView}
+        className="lg:flex-[0.75] flex-wrap lg:flex-nowrap w-full flex lg:flex-col justify-center lg:justify-evenly items-start h-full ml-4 scale-75 sm:scale-100 "
       >
         {flutterImages.map((img, index) => (
           <motion.div

@@ -1,8 +1,8 @@
 import { images } from "../../constants/";
 import "./style.scss";
 
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { motion, useScroll } from "framer-motion";
+import { useEffect, useState } from "react";
 import { HiMenuAlt4, HiX } from "react-icons/hi";
 
 const navItems = ["home", "about", "work", "skills", "contact"];
@@ -10,9 +10,23 @@ function index() {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [active, setActive] = useState(navItems[0]);
 
+  const { scrollYProgress } = useScroll();
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const id = window.location.hash.slice(1);
+
+      setActive(id);
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+    handleHashChange();
+
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
+
   const handleNavClick = (item) => {
     setActive(item);
-
     if (isNavOpen) {
       setIsNavOpen(false);
     }
@@ -20,10 +34,15 @@ function index() {
 
   return (
     <nav className="w-full flex justify-between items-center px-8 py-4  md:px-20 md:py-6  bg-[rgba(255,255,255,0.25)]  backdrop-filter backdrop-blur-sm border border-[rgba(255,255,255,0.18)] fixed top-0 z-30 shadow-md">
-      <div className="flex justify-start items-center ">
+      <motion.div
+        className="absolute bottom-0 left-0 h-0.5 bg-secondary w-full origin-left"
+        style={{ scaleX: scrollYProgress }}
+      />
+      <div className="flex justify-start items-center relative">
         <img src={images.logo} alt="Logo" className="w-24 lg:w-32  " />
       </div>
-      <ul className="flex-1 hidden lg:flex justify-end items-center list-none gap-4">
+      {/* Laptop screen Nav */}
+      <ul className="flex-1 hidden lg:flex justify-center items-center list-none gap-4">
         {navItems.map((item) => (
           <li
             key={`nav-item-${item}`}
@@ -46,6 +65,7 @@ function index() {
           </li>
         ))}
       </ul>
+      {/* Phone screen navigation */}
       <div className="size-9 rounded-full relative flex justify-center items-center cursor-pointer bg-secondary lg:hidden">
         <HiMenuAlt4
           className="text-white size-2/3"
