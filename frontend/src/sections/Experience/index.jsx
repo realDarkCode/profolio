@@ -23,8 +23,8 @@ function index() {
   const [experience, setExperience] = useState([]);
 
   useEffect(() => {
-    const experienceQuery = "*[_type == 'experiences']";
-    const educationQuery = "*[_type == 'education']";
+    const experienceQuery = "*[_type == 'experiences'] | order(year asc)";
+    const educationQuery = "*[_type == 'education'] | order(year asc)";
 
     client.fetch(experienceQuery).then((res) => {
       if (res.length === 0) return;

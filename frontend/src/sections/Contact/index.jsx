@@ -3,8 +3,8 @@ import "./style.scss";
 
 import AnimateWrap from "@/Wrapper/AnimateWrap";
 import ComponentWrap from "@/Wrapper/componentWrap";
-import { images } from "@/constants";
 import { useState } from "react";
+import { MdEmail, MdLocationPin, MdWhatsapp } from "react-icons/md";
 
 const initialForm = {
   name: "",
@@ -36,18 +36,37 @@ function index() {
   return (
     <>
       <h2 className="head-text">Contact Me</h2>
-      <div className="w-full md:w-3/5 flex justify-evenly items-center flex-wrap">
-        <div className="w-full sm:w-72 flex flex-row justify-start items-center p-4 my-4 rounded-xl cursor-pointer bg-secondaryLight transition-all duration-300 ease-in-out gap-2">
-          <img src={images.email} alt="email" className="size-10" />
-          <a href="mailto:test@gmail.com" className="font-medium">
+      <div className="w-full md:w-3/5 my-4 lg:my-8 xl:my-12 flex justify-evenly items-center flex-wrap gap-4">
+        <div className="w-full lg:w-auto text-sm lg:text-base xl:text-lg py-2 lg:py-2 px-1 lg:px-4 flex flex-row justify-start items-center rounded-xl cursor-pointer bg-secondaryLight transition-all duration-300 ease-in-out gap-2">
+          <MdEmail className="size-6 lg:size-8 text-secondary" />
+          <a
+            href="mailto:test@gmail.com"
+            className="font-medium"
+            target="_blank"
+          >
             test@gmail.com
           </a>
         </div>
 
-        <div className="w-full sm:w-72 flex flex-row justify-start items-center p-4 my-4 rounded-xl cursor-pointer bg-secondaryLight transition-all duration-300 ease-in-out gap-2">
-          <img src={images.mobile} alt="mobile" className="size-10" />
-          <a href="tel:+88016123456789" className="font-medium">
+        <div className="w-full lg:w-auto text-sm lg:text-base xl:text-lg py-2 lg:py-2 px-1 lg:px-4 flex flex-row justify-start items-center rounded-xl cursor-pointer bg-secondaryLight transition-all duration-300 ease-in-out gap-2">
+          <MdWhatsapp className="size-6 lg:size-8 text-secondary" />
+          <a
+            href="https://api.whatsapp.com/send/?phone=%2B88017123456789&text&type=phone_number&app_absent=0"
+            target="_blank"
+            className="font-medium"
+          >
             +88016123456789
+          </a>
+        </div>
+
+        <div className="w-full lg:w-auto text-sm lg:text-base xl:text-lg py-2 lg:py-2 px-1 lg:px-4 flex flex-row justify-start items-center rounded-xl cursor-pointer bg-secondaryLight transition-all duration-300 ease-in-out gap-2">
+          <MdLocationPin className="size-6 lg:size-8 text-secondary" />
+          <a
+            target="_blank"
+            href="https://maps.app.goo.gl/yNDJJ7DfcUQ2uSos8"
+            className="font-medium"
+          >
+            Road 1, House 1, Dhaka, Bangladesh
           </a>
         </div>
       </div>

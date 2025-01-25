@@ -1,10 +1,12 @@
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import About from "@/container/About";
-import Experience from "@/container/Experience";
-import Footer from "@/container/Footer";
-import Home from "@/container/Home";
-import Testimonial from "@/container/Testimonial";
-import Work from "@/container/Work";
+import About from "@/sections/About";
+import Contact from "@/sections/Contact";
+import Courses from "@/sections/Courses";
+import Experience from "@/sections/Experience";
+import Home from "@/sections/Home";
+import Testimonial from "@/sections/Testimonial";
+import Work from "@/sections/Work";
 
 import "./app.scss";
 export default function App() {
@@ -15,7 +17,9 @@ export default function App() {
       <About />
       <Work />
       <Experience />
+      <Courses />
       <Testimonial />
+      <Contact />
       <Footer />
     </div>
   );
